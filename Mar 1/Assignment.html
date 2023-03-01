@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript</title>
+    <style>
+      #round {
+        margin: 2rem auto;
+        border: 2px solid rgb(217, 0, 255);
+        border-radius: 50%;
+        width: 500px;
+        height: 500px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="round" onclick="changeColor()"></div>
+
+    <script>
+      const colors = [
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "aqua",
+        "indigo",
+        "violet",
+      ];
+      let i = 0;
+      function changeColor() {
+        if (i < colors.length - 1) {
+          i++;
+        } else {
+          i = 0;
+        }
+        document.getElementById("round").style.backgroundColor = colors[i];
+      }
+    </script>
+  </body>
+</html>
