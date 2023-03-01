@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+
+    <style>
+      .main {
+        margin: 5rem auto;
+        width: 360px;
+        height: 400px;
+        border: 3px solid rgb(99, 99, 99);
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .result {
+        text-align: right;
+        margin: 1rem;
+        font-size: 24px;
+      }
+
+      .clear,
+      .bottoms {
+        display: flex;
+      }
+      .numeric {
+        column-count: 4;
+        column-gap: 0;
+      }
+
+      .right {
+        flex-grow: 1;
+      }
+
+      .left {
+        flex: 0 1 65%;
+      }
+
+      .sub,
+      .right,
+      .left {
+        height: 60px;
+        border: 1px solid rgb(154, 154, 154);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background-image: linear-gradient(rgb(227, 227, 227), white);
+      }
+
+      .left:hover,
+      .right:hover,
+      .sub:hover {
+        color: rgb(105, 105, 105);
+        background-image: linear-gradient(white, rgb(227, 227, 227));
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="result"></div>
+      <div class="clear">
+        <div class="left">clear</div>
+        <div class="right">/</div>
+      </div>
+      <div class="numeric">
+        <div class="sub">1</div>
+        <div class="sub">4</div>
+        <div class="sub">7</div>
+        <div class="sub">2</div>
+        <div class="sub">5</div>
+        <div class="sub">8</div>
+        <div class="sub">3</div>
+        <div class="sub">6</div>
+        <div class="sub">9</div>
+        <div class="sub">x</div>
+        <div class="sub">-</div>
+        <div class="sub">+</div>
+      </div>
+      <div class="bottoms">
+        <div class="left">0</div>
+        <div class="right">=</div>
+      </div>
+    </div>
+  </body>
+</html>
