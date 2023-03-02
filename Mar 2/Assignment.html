@@ -18,10 +18,11 @@
         justify-content: flex-end;
       }
 
-      .result {
+      #result {
         text-align: right;
         margin: 1rem;
         font-size: 24px;
+        outline: none;
       }
 
       .clear,
@@ -59,33 +60,54 @@
         color: rgb(105, 105, 105);
         background-image: linear-gradient(white, rgb(227, 227, 227));
       }
+
+      input {
+        border: none;
+      }
     </style>
   </head>
   <body>
     <div class="main">
-      <div class="result"></div>
+      <div><input type="text" id="result" disabled /></div>
       <div class="clear">
-        <div class="left">clear</div>
-        <div class="right">/</div>
+        <div class="left" onclick="cleanAll()">clear</div>
+        <div class="right" onclick="showValue('/')">/</div>
       </div>
       <div class="numeric">
-        <div class="sub">1</div>
-        <div class="sub">4</div>
-        <div class="sub">7</div>
-        <div class="sub">2</div>
-        <div class="sub">5</div>
-        <div class="sub">8</div>
-        <div class="sub">3</div>
-        <div class="sub">6</div>
-        <div class="sub">9</div>
-        <div class="sub">x</div>
-        <div class="sub">-</div>
-        <div class="sub">+</div>
+        <div class="sub" onclick="showValue('1')">1</div>
+        <div class="sub" onclick="showValue('4')">4</div>
+        <div class="sub" onclick="showValue('7')">7</div>
+        <div class="sub" onclick="showValue('2')">2</div>
+        <div class="sub" onclick="showValue('5')">5</div>
+        <div class="sub" onclick="showValue('8')">8</div>
+        <div class="sub" onclick="showValue('3')">3</div>
+        <div class="sub" onclick="showValue('6')">6</div>
+        <div class="sub" onclick="showValue('9')">9</div>
+        <div class="sub" onclick="showValue('*')">x</div>
+        <div class="sub" onclick="showValue('-')">-</div>
+        <div class="sub" onclick="showValue('+')">+</div>
       </div>
       <div class="bottoms">
-        <div class="left">0</div>
-        <div class="right">=</div>
+        <div class="left" onclick="showValue('0')">0</div>
+        <div class="right" onclick="calculate()">=</div>
       </div>
     </div>
+
+    <script>
+      function cleanAll() {
+        document.getElementById("result").value = "";
+      }
+
+      function showValue(value) {
+        document.getElementById("result").value += value;
+        console.log(value);
+      }
+
+      function calculate() {
+        document.getElementById("result").value = eval(
+          document.getElementById("result").value
+        );
+      }
+    </script>
   </body>
 </html>
