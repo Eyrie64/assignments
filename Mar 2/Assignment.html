@@ -99,8 +99,23 @@
       }
 
       function showValue(value) {
+        let lastOp = document.getElementById("result").value.slice(-1);
+
+        if (
+          lastOp === "+" ||
+          lastOp === "-" ||
+          lastOp === "*" ||
+          lastOp === "/"
+        ) {
+          if (value == "/" || value == "*" || value == "+" || value == "-") {
+            document.getElementById("result").value =
+              document.getElementById("result").value.slice(0, -1) + value;
+
+            return;
+          }
+        }
+
         document.getElementById("result").value += value;
-        console.log(value);
       }
 
       function calculate() {
