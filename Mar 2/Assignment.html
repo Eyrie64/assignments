@@ -102,6 +102,13 @@
         let lastOp = document.getElementById("result").value.slice(-1);
 
         if (
+          document.getElementById("result").value === "" &&
+          /[+\-*/]/.test(value)
+        ) {
+          return;
+        }
+
+        if (
           lastOp === "+" ||
           lastOp === "-" ||
           lastOp === "*" ||
@@ -119,9 +126,20 @@
       }
 
       function calculate() {
-        document.getElementById("result").value = eval(
-          document.getElementById("result").value
-        );
+        let fResult = document.getElementById("result");
+        let expression = fResult.value;
+
+        if (expression === "") {
+          fResult.value = "";
+          return;
+        }
+
+        try {
+          let resultValue = eval(expression);
+          fResult.value = resultValue;
+        } catch (error) {
+          fResult.value = "Undefined";
+        }
       }
     </script>
   </body>
