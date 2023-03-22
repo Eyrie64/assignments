@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sticky Note</title>
+
+    <style>
+      .main {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .textspace {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .textspace textarea {
+        outline: none;
+      }
+      .textspace button {
+        padding: 6px;
+        border: 1px solid black;
+        border-radius: 4px;
+      }
+      .textspace button:hover {
+        background-color: #b8b8b8;
+        color: #ffffff;
+        border-color: #ffffff;
+      }
+      .notearea {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 60%;
+        row-gap: 1.5rem;
+      }
+      .note {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        background-color: rgb(248, 249, 250);
+        box-shadow: 0 2px 8px #00000031;
+        padding: 0 10px 10px;
+        transition: all 0.3s ease-out;
+      }
+      .note:hover {
+        transform: scale(1.05);
+      }
+      .note p {
+        font-size: 18px;
+      }
+      .note button {
+        padding: 8px;
+        margin-left: 8px;
+        border: 1px solid rgb(203, 203, 203);
+        border-radius: 10px;
+        width: 40%;
+        text-align: center;
+      }
+      .note button:nth-child(1):hover {
+        background-color: #626262;
+        color: #ffffff;
+      }
+      .note button:nth-child(2):hover {
+        background-color: rgb(169, 44, 44);
+        color: #ffffff;
+        
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="textspace">
+        <label>Description</label>
+        <textarea name="getText" id="getText" cols="30" rows="10"></textarea>
+        <button id="addNote">Add to note</button>
+      </div>
+
+      <div class="notearea" id="notearea">
+        </div>
+      </div>
+    </div>
+    <script>
+      const getText = document.getElementById("getText");
+      const addNote = document.getElementById("addNote");
+      const noteArea = document.getElementById("notearea");
+
+      let editNoteElem = null;
+
+      let colors = ["white", "aqua", "aquamarine", "bisque"];
+      let colorIndex = 0;
+
+      addNote.addEventListener("click", function () {
+        const noteText = getText.value;
+        if (noteText !== "") {
+          if (editNoteElem !== null){
+            const noteTextElem = editNoteElem.querySelector('p');
+            noteTextElem.innerText = noteText;
+            editNoteElem = null;
+            addNote.innerText = 'Add to note';
+          }else{
+          const noteElem = document.createElement("div");
+          noteElem.classList.add("note");
+          noteElem.style.backgroundColor = colors[colorIndex];
+          colorIndex++;
+          if(colorIndex === colors.length){
+            colorIndex = 0;
+          }
+          noteElem.innerHTML = `
+          <p>${noteText}</p>
+            <div class="btn">
+            <button class='editNote'>Edit</button>
+            <button class='deleteNote'>Delete</button>
+          </div>
+            `;
+          noteArea.appendChild(noteElem);
+        }
+          
+        }
+      });
+
+      noteArea.addEventListener('click', function(event){
+        if(event.target.classList.contains('deleteNote')){
+          event.target.parentNode.parentNode.remove();
+        }
+        else if(event.target.classList.contains('editNote')){
+          const noteElem = event.target.parentNode.parentNode;
+          const noteTextElem = noteElem.querySelector('p');
+          const noteText = noteTextElem.innerText;
+
+          addNote.innerText = "Update";
+          getText.value = noteText;
+          editNoteElem = noteElem;
+        }
+      })
+    </script>
+  </body>
+</html>
